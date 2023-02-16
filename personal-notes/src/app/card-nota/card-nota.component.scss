@@ -1,18 +1,23 @@
+@import "../../assets/scss/colors.scss";
+
 *{
-  color: aliceblue;
+  color: $light-backgrounds;
 }
 
 .card-clr{
   display: flex;
-  justify-content: center;
+  justify-content: left;
 }
 
 .card-desc{
-  opacity: 0.5;
+  opacity: 0.7;
 }
 
 .important-btn{
   width: fit-content;
+}
+
+a{
   text-decoration: none;
 }
 

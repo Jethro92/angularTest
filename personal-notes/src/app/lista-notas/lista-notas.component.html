@@ -7,18 +7,7 @@
           <h3 class="mb-0">Personal Notes</h3>
         </div>
         <div class="card-body">
-          <form [formGroup]="NotesForm">
-            <div class="form-group">
-              <label for="title">Title</label>
-              <input type="text" class="form-control" id="titulo" formControlName="titulo" placeholder="Add a title" #titulo>
-            </div>
-            <div class="form-group">
-              <label for="note">Note</label>
-              <input type="note" class="form-control" id="note" formControlName="nota" placeholder="Add a note" #nota>
-            </div>
-
-          </form>
-          <button class="btn-guardar" [disabled]="NotesForm.invalid || isDisabled" (click)="guardar(titulo.value, nota.value)">Save</button>
+          <app-form-nota (onItemAdded)="guardarNota($event)"></app-form-nota>
         </div>
       </div>
     </div>

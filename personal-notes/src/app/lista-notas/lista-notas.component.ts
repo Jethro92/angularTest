@@ -7,32 +7,17 @@ import { Nota } from '../models/nota.model';
   templateUrl: './lista-notas.component.html',
   styleUrls: ['./lista-notas.component.scss']
 })
-export class ListaNotasComponent implements OnInit{
+export class ListaNotasComponent{
 
-  NotesForm!: FormGroup;
   notas: Nota[];
-  isDisabled: boolean = true;
 
-  constructor(private formBuilder: FormBuilder){
+
+  constructor(){
     this.notas = [];
   }
 
-  ngOnInit() {
-
-    this.NotesForm = this.formBuilder.group({
-      titulo: ['', Validators.required],
-      nota: ['', Validators.required]
-    });
-
-    this.NotesForm.valueChanges.subscribe((x) => {
-      this.isDisabled = !this.NotesForm.valid;
-    });
-
-  }
-
-  guardar(titulo:string, nota:string):boolean{
-    this.notas.push(new Nota(titulo,nota));
-    return false
+  guardarNota(nota:Nota){
+    this.notas.push(nota);
   }
 
   noteSelected(note:Nota){

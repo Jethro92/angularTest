@@ -1,8 +1,11 @@
 export class Nota{
   private selected!: boolean;
   private color:string | undefined;
+  public estados: string[];
+
 
   constructor(public titulo:string, public nota:string){
+    this.estados = ["In progress", "Suspended", "Finished", "Overdue"];
   }
 
   setColor(color:string){

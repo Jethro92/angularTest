@@ -1,0 +1,21 @@
+@import "../../assets/scss/colors.scss";
+
+.btn-guardar{
+  background-color: rgb(38, 66, 119);
+  color: $light-backgrounds;
+  margin-top: 1rem;
+  border: none;
+}
+
+.btn-guardar:hover{
+  opacity:0.9
+}
+
+.input-available{
+  border-bottom: 0.2rem solid rgb(38, 66, 119);
+}
+
+.required{
+  border-bottom: 0.2rem solid rgb(156, 41, 41);
+}
+

@@ -1,11 +1,7 @@
-.btn-guardar{
-  background-color: rgb(61, 75, 138);
-  color: aliceblue;
-  margin-top: 1rem;
-  border: none;
-}
+@import "../../assets/scss/colors.scss";
 
-.btn-guardar:hover{
-  opacity:0.7
+.card-header{
+  border-bottom:none;
+  opacity: 0.999;
+  color: $color-font;
 }
-

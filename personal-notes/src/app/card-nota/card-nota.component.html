@@ -4,11 +4,22 @@
   </div>
   <div class="card-desc {{classColor}}">
     <h3>{{nota.titulo}}</h3>
+    <!-- <p>States</p>
+    <ul>
+      <li *ngFor="let stt of nota.estados">
+        <span [ngSwitch]="stt">
+          <i *ngSwitchCase="'Overdue'" style="color:red;">{{stt}}</i>
+          <i *ngSwitchDefault>{{stt}}</i>
+        </span>
+      </li>
+    </ul> -->
     <p>
       {{nota.nota}}
     </p>
 
-    <a href="#" (click)="ir()" *ngIf="!nota.isSelected()" class="important-btn">set Important!</a>
-    <h4 [style.display]="nota.isSelected()?'' :'none'" class="important-note-message">Important Note</h4>
+    <!-- <a href="#" (click)="ir()" *ngIf="!nota.isSelected()" class="important-btn">set Important!</a>
+    <h4 [style.display]="nota.isSelected()?'' :'none'" class="important-note-message">Important Note</h4> -->
+
+    <a [routerLink]="['/detalle-nota']">Ver detalle</a>
   </div>
 </div>

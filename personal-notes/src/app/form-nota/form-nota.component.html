@@ -1,0 +1,12 @@
+<form [formGroup]="NotesForm">
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input type="text" class="form-control" id="titulo" formControlName="titulo" [class]="NotesForm.controls['titulo'].valid ?'input-available' :'required'" placeholder="Add a title" #titulo>
+  </div>
+  <div class="form-group">
+    <label for="note">Note</label>
+    <input type="note" class="form-control" id="nota" formControlName="nota" [class]="NotesForm.controls['nota'].valid ?'input-available' :'required'" placeholder="Add a note" #nota>
+  </div>
+
+</form>
+<button class="btn-guardar" *ngIf="!NotesForm.invalid" (click)="guardar(titulo.value, nota.value)">Save</button>
