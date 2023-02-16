@@ -1,0 +1,30 @@
+<div class="container content">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <span class="anchor" id="formLogin"></span>
+      <div class="card card-outline-secondary">
+        <div class="card-header">
+          <h3 class="mb-0">Personal Notes</h3>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="NotesForm">
+            <div class="form-group">
+              <label for="title">Title</label>
+              <input type="text" class="form-control" id="titulo" formControlName="titulo" placeholder="Add a title" #titulo>
+            </div>
+            <div class="form-group">
+              <label for="note">Note</label>
+              <input type="note" class="form-control" id="note" formControlName="nota" placeholder="Add a note" #nota>
+            </div>
+
+          </form>
+          <button class="btn btn-guardar" [disabled]="NotesForm.invalid || isDisabled" (click)="guardar(titulo.value, nota.value)">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr class="mb-5">
+  <div class="row row-flex">
+    <app-card-nota *ngFor="let n of notas" [nota]="n"></app-card-nota>
+  </div>
+</div>
