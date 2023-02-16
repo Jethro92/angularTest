@@ -7,5 +7,8 @@
     <p>
       {{nota.nota}}
     </p>
+
+    <a href="#" (click)="ir()" *ngIf="!nota.isSelected()" class="important-btn">set Important!</a>
+    <h4 [style.display]="nota.isSelected()?'' :'none'" class="important-note-message">Important Note</h4>
   </div>
 </div>

@@ -6,6 +6,9 @@
 section{
   padding: 100px 0;
 }
+.card, .form-control{
+  border-radius: 0!important;
+}
 .details-card{
   background: #ecf0f1;
 }
@@ -17,7 +20,7 @@ section{
 .card-img{
   position:relative;
   overflow:hidden;
-  border-radius:0;
+  //border-radius:0;
   z-index:1;
 }
 .card-img img{
@@ -33,11 +36,11 @@ section{
   padding:6px;
   color:#ffffff;
   font-size:12px;
-  border-radius: 4px;
+  /*border-radius: 4px;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   -ms-border-radius: 4px;
-  -o-border-radius: 4px;
+  -o-border-radius: 4px;*/
   transform: translate(-50%, -50%);
 }
 .card-img span h4 {
@@ -91,8 +94,8 @@ section{
     -webkit-box-shadow 0.15s ease-in-out;
   margin: 0;
   border: 0;
-  -webkit-border-radius: 0.125rem;
-  border-radius: 0.125rem;
+  -webkit-border-radius: 0;
+  border-radius: 0;
   cursor: pointer;
   text-transform: uppercase;
   white-space: normal;

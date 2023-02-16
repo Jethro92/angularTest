@@ -12,7 +12,8 @@ export class Nota{
   isSelected():boolean{
     return this.selected;
   }
-  setSelected(){
-    this.selected = true;
+
+  setSelected(selected: boolean){
+    this.selected = selected;
   }
 }

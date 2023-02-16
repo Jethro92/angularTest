@@ -35,4 +35,11 @@ export class ListaNotasComponent implements OnInit{
     return false
   }
 
+  noteSelected(note:Nota){
+    this.notas.forEach((x)=>{
+      x.setSelected(false);
+    })
+    note.setSelected(true);
+  }
+
 }

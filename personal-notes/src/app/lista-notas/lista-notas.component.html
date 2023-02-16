@@ -18,13 +18,13 @@
             </div>
 
           </form>
-          <button class="btn btn-guardar" [disabled]="NotesForm.invalid || isDisabled" (click)="guardar(titulo.value, nota.value)">Save</button>
+          <button class="btn-guardar" [disabled]="NotesForm.invalid || isDisabled" (click)="guardar(titulo.value, nota.value)">Save</button>
         </div>
       </div>
     </div>
   </div>
   <hr class="mb-5">
   <div class="row row-flex">
-    <app-card-nota *ngFor="let n of notas" [nota]="n"></app-card-nota>
+    <app-card-nota *ngFor="let n of notas" [nota]="n" (clicked)="noteSelected($event)"></app-card-nota>
   </div>
 </div>
