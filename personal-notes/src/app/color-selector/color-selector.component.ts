@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { _ClassColors } from '../models/class-color.model';
 
 @Component({
   selector: 'app-color-selector',
@@ -6,7 +7,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./color-selector.component.scss']
 })
 export class ColorSelectorComponent {
-  @Input() color:string = "yellow-card";
+  @Input() color:string = _ClassColors.yellow;
   @Output() colorSelected = new EventEmitter<string>();
 
   selectColor(){

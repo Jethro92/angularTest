@@ -13,7 +13,7 @@ import { ListaNotasComponent } from './lista-notas/lista-notas.component';
     AppComponent,
     CardNotaComponent,
     ColorSelectorComponent,
-    ListaNotasComponent
+    ListaNotasComponent,
   ],
   imports: [
     BrowserModule,

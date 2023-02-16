@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Nota } from '../models/nota.models';
+import { Nota } from '../models/nota.model';
 
 @Component({
   selector: 'app-lista-notas',
