@@ -7,13 +7,13 @@
           <h3 class="mb-0">Personal Notes</h3>
         </div>
         <div class="card-body">
-          <app-form-nota (onItemAdded)="guardarNota($event)"></app-form-nota>
+          <app-form-note (onItemAdded)="saveNote($event)"></app-form-note>
         </div>
       </div>
     </div>
   </div>
   <hr class="mb-5">
   <div class="row row-flex">
-    <app-card-nota *ngFor="let n of notas" [nota]="n" (clicked)="noteSelected($event)"></app-card-nota>
+    <app-card-note *ngFor="let n of notesApiClient.getAll()" [note]="n" (clicked)="noteSelected($event)" ></app-card-note>
   </div>
 </div>
