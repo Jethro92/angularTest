@@ -1,25 +1,46 @@
-export class Note{
-  private selected!: boolean;
-  private color!:string;
-  public states: string[];
-  public id!: string;
 
-  constructor(public title:string, public content:string){
+
+export class Note{
+
+  color!:string;
+  states: string[];
+  id!: number;
+
+
+
+  constructor(public title:string, public content:string, public selected:boolean = false, public votes: number = 0){
     this.states = ["In progress", "Suspended", "Finished", "Overdue"];
   }
 
-  setColor(color:string){
+  public setColor(color:string){
     this.color = color;
   }
-  getColor():string{
+  public getColor():string{
     return this.color;
   }
 
-  isSelected():boolean{
+  public isSelected():boolean{
     return this.selected;
   }
 
-  setSelected(selected: boolean){
+  public setSelected(selected: boolean){
     this.selected = selected;
   }
+
+  public voteUp(){
+    this.votes++;
+  }
+
+  public voteDown(){
+    this.votes--;
+  }
+
+  public setId(id:number){
+    this.id = id;
+  }
+
+  public getId(){
+    return this.id;
+  }
+
 }

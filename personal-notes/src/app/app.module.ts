@@ -1,5 +1,5 @@
 import { NotesService } from './services/notes.service';
-import { NotesState, reducerNotes, initializeNoteState, NotesEffects } from './models/notes-state.model';
+import { reducerNotes, initializeNoteState, NotesEffects } from './state-management/notes.reducer';
 import { NotesApiClient } from './models/notes-api-client.model';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -12,9 +12,13 @@ import { ColorSelectorComponent } from './color-selector/color-selector.componen
 import { ListNotesComponent } from './list-notes/list-notes.component';
 import { DetailNoteComponent } from './detail-note/detail-note.component';
 import { FormNoteComponent } from './form-note/form-note.component';
-import { StoreModule as NgRxStoreModule,ActionReducerMap} from '@ngrx/store';
+import { StoreModule as NgRxStoreModule,ActionReducerMap, StoreRootModule} from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule } from '@angular/common/http';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { NotesState } from './state-management/entity';
+
+
 
 //redux init
 export interface AppState{
@@ -28,7 +32,8 @@ const reducers: ActionReducerMap<AppState> = {
 let reducersInitialState = {
   notes: initializeNoteState()
 };
-//redux init finish
+//redux end init
+
 
 @NgModule({
   declarations: [
@@ -45,7 +50,8 @@ let reducersInitialState = {
     ReactiveFormsModule,
     HttpClientModule,
     NgRxStoreModule.forRoot(reducers, { initialState: reducersInitialState}),
-    EffectsModule.forRoot(NotesEffects)
+    EffectsModule.forRoot([NotesEffects]),
+    StoreDevtoolsModule.instrument()
   ],
   providers: [
     NotesService

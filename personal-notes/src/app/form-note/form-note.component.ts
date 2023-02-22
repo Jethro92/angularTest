@@ -2,6 +2,7 @@ import { _ClassColors } from '../models/class-color.model';
 import { Component, Output, EventEmitter } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Note } from '../models/note.model';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-form-note',
@@ -22,17 +23,18 @@ export class FormNoteComponent {
 
     this.NotesForm = this.formBuilder.group({
       title: ['', Validators.required],
-      note: ['', Validators.required]
+      content: ['', Validators.required]
     });
 
     this.NotesForm.valueChanges.subscribe((x) => {
       // console.log("cambiaron los valores del form");
+
     });
 
   }
 
-  save(title:string, note:string):boolean{
-    let newNote:Note = new Note(title, note);
+  save(title:string, content:string):boolean{
+    let newNote:Note = new Note(title, content);
     newNote.setColor(_ClassColors.yellow);
     this.onItemAdded.emit(newNote);
     return false;

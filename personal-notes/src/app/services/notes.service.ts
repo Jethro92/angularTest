@@ -9,13 +9,15 @@ import { Note } from '../models/note.model';
 })
 export class NotesService {
 
-  private apiUrl="/note";
+  private apiUrl="http://localhost:8080/note";
 
   constructor(public httpClient:HttpClient) { }
 
   findAll() {
     const notes = this.httpClient.get<Note[]>(this.apiUrl).pipe(catchError(this.handleError));
+    console.log(notes);
     return notes;
+
   }
 
   findById(id:number){

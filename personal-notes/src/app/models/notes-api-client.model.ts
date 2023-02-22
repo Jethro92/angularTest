@@ -1,77 +1,113 @@
+import { ColorChangeAction, NewNoteAction, SelectedImportantAction, VoteDownAction, VoteUpAction } from './../state-management/note.actions';
 import { Injectable } from '@angular/core';
 import {Note} from './note.model';
-import { Subject, BehaviorSubject } from 'rxjs';
 import { NotesService } from './../services/notes.service';
+import { Store } from '@ngrx/store';
+import { AppState } from '../app.module';
+import { NotesActions } from '../state-management/note.actions';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NotesApiClient {
 
-  notes: Note[];
-  myNote:Note = new Note('', '');
-  private current: Subject<Note> = new BehaviorSubject<Note>(this.myNote);
+  all:any;
+  updates:string[];
 
-  constructor(private service:NotesService){
-    this.notes = [];
+
+  constructor(private service:NotesService, private store:Store<AppState>){
+    this.updates = [];
+
+    this.store.select(state => state.notes.important).subscribe(data => {
+      const note = data;
+      if(note != null){
+        this.updates.push(note.title + " has been selected");
+      }
+    });
+
+
+    store.select(state => state.notes.items).subscribe(items => this.all = items);
   }
 
+ getAll():Note[]{
+    //this.service.findAll().subscribe((res:Note[]) => this.notes = res);
 
 
-  getAll():Note[]{
+
+    // console.log(this.notes);
     // return this.notes;
-    this.service.findAll().subscribe((res:Note[]) => this.notes = res);
-    return this.notes;
+    return this.all;
   }
-
+ /*
   getById(id:number):Note{
-    //return this.notes.filter((note) => {return note.id.toString() === id})[0];
-    let note:Note = new Note('', '');
-    this.service.findById( id ).subscribe((res:Note) => note = res);
-    return note;
+   // return this.notes.filter((note) => {return note.id === id})[0];
+
+    // let note:Note = new Note('', '');
+    // this.service.findById( id ).subscribe((res:Note) => note = res);
+    // return note;
   }
 
   searchNotes (title:string):Note[]{
-    //return this.notes.filter((note) => {return note.id.toString() === id})[0];
-    let notes:Note[] = [];
-    this.service.searchNotesByTitle( title ).subscribe((res:Note[]) => notes = res);
-    return notes;
-  }
+   // return this.notes.filter((note) => {return note.title === title});
+
+    // let notes:Note[] = [];
+    // this.service.searchNotesByTitle( title ).subscribe((res:Note[]) => notes = res);
+    // return notes;
+  }*/
 
   addNote(note: Note){
     //this.notes.push(note);
-    return this.service.addNote(note);
+    note.setSelected(true);
+    let id:number = 0;
+    this.store.select(state => state.notes.id).subscribe(x => id = x);
+    console.log(id);
+    note.setId(id);
+
+    this.store.dispatch(new NewNoteAction(note));
+    //return this.service.addNote(note);
   }
 
-  updateNote(id:number, note:Note):Note{
-    //return this.notes.filter((note) => {return note.id.toString() === id})[0];
-    let resultNote:Note = new Note('', '');
-    this.service.updateNote( id,note ).subscribe((res:Note) => resultNote = res);
-    return resultNote;
-  }
+  /*updateNote(id:number, note:Note):Note{
+    //return this.notes.filter((note) => {return note.id === id})[0];
+
+
+    // let resultNote:Note = new Note('', '');
+    // this.service.updateNote( id,note ).subscribe((res:Note) => resultNote = res);
+    // return resultNote;
+  }*/
 
   deleteNote(id:number){
-    //return this.notes.filter((note) => {return note.id.toString() === id})[0];
-    this.service.deleteNote( id );
+    //return this.notes.filter((note) => {return note.id === id})[0];
+
+    //this.service.deleteNote( id );
 
   }
 
-  changeColor(id:string, color:string){
-    let note = this.notes.filter((note) => { return note.id === id } )[0];
+  voteUp(note:Note){
+
+    this.store.dispatch(new VoteUpAction(note));
+  }
+
+  voteDown(note:Note){
+    this.store.dispatch(new VoteDownAction(note));
+  }
+
+  changeColor(note:Note, color:string){
+    //let note = this.notes.filter((note) => { return note.id === id } )[0];
 
     //console.log(JSON.stringify(note));
+    this.store.dispatch(new ColorChangeAction(note,color));
   }
 
 
   //metodo que va a generar el evento con el subject
   selectNote(note:Note){
-    this.notes.forEach(x => x.setSelected(false));
-    note.setSelected(true);
-    this.current.next(note);//se crea el evento del subject
+
+    //this.notes.forEach(x => x.setSelected(false));
+    this.store.dispatch(new SelectedImportantAction(note));
+
+    //this.current.next(note);//se crea el evento del subject
   }
 
-  subscribeOnChange(fn:any){
-    this.current.subscribe(fn);
-  }
 }
 

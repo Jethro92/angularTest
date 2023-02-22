@@ -16,10 +16,13 @@
     <p>
       {{note.content}}
     </p>
+    <a href="#" (click)="voteUp()"><i class="material-icons md-18">thumb_up</i></a>
+    <a href="#" (click)="voteDown()"><i class="material-icons md-18">thumb_down</i></a>
+    {{note.votes}}
 
-    <!-- <a href="#" (click)="ir()" *ngIf="!note.isSelected()" class="important-btn">set Important!</a>
-    <h4 [style.display]="note.isSelected()?'' :'none'" class="important-note-message">Important Note</h4> -->
+    <a href="#" (click)="open()" *ngIf="!note.selected" class="important-btn">set Important!</a>
+    <h4 [style.display]="note.selected?'' :'none'" class="important-note-message">Important Note</h4>
 
-    <a [routerLink]="['/detail-note']">See more</a>
+    <!-- <a [routerLink]="['/detail-note']">See more</a> -->
   </div>
 </div>

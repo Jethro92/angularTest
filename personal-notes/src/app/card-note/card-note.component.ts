@@ -23,17 +23,29 @@ export class CardNoteComponent {
 
   ngOnInit(): void {
 
-    this.classColor = this.note.getColor();
+
+    this.classColor = this.note.color;
   }
 
   addColorToCard(color:string){
-    this.note.setColor(color);
-    this.notesApiClient.changeColor(this.note.id,color);
-    this.classColor = color;
+
+    //this.note.setColor(color);
+    this.notesApiClient.changeColor(this.note, color);
+    this.classColor = this.note.color;
   }
 
-  ir():boolean{
+  open():boolean{
     this.clicked.emit(this.note);
+    return false;
+  }
+
+  voteUp():boolean{
+    this.notesApiClient.voteUp(this.note);
+    return false;
+  }
+
+  voteDown():boolean{
+    this.notesApiClient.voteDown(this.note);
     return false;
   }
 }
