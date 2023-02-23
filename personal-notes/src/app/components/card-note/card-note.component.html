@@ -9,6 +9,7 @@
       <li *ngFor="let stt of note.estados">
         <span [ngSwitch]="stt">
           <i *ngSwitchCase="'Overdue'" style="color:red;">{{stt}}</i>
+
           <i *ngSwitchDefault>{{stt}}</i>
         </span>
       </li>

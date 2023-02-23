@@ -7,11 +7,11 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CardNoteComponent } from './card-note/card-note.component';
-import { ColorSelectorComponent } from './color-selector/color-selector.component';
-import { ListNotesComponent } from './list-notes/list-notes.component';
-import { DetailNoteComponent } from './detail-note/detail-note.component';
-import { FormNoteComponent } from './form-note/form-note.component';
+import { CardNoteComponent } from './components/card-note/card-note.component';
+import { ColorSelectorComponent } from './components/color-selector/color-selector.component';
+import { ListNotesComponent } from './components/list-notes/list-notes.component';
+import { DetailNoteComponent } from './components/detail-note/detail-note.component';
+import { FormNoteComponent } from './components/form-note/form-note.component';
 import { StoreModule as NgRxStoreModule,ActionReducerMap, StoreRootModule} from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule } from '@angular/common/http';

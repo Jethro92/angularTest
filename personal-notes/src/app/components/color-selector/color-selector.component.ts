@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { _ClassColors } from '../models/class-color.model';
+import { _ClassColors } from '../../models/class-color.model';
 
 @Component({
   selector: 'app-color-selector',

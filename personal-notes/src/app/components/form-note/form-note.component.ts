@@ -1,7 +1,7 @@
-import { _ClassColors } from '../models/class-color.model';
+import { _ClassColors } from '../../models/class-color.model';
 import { Component, Output, EventEmitter } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { Note } from '../models/note.model';
+import { Note } from '../../models/note.model';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
