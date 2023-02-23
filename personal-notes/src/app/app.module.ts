@@ -17,6 +17,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { NotesState } from './state-management/entity';
+import { LoginComponent } from './components/login/login.component';
+import { ProtectedComponent } from './components/protected/protected.component';
 
 
 
@@ -42,6 +44,8 @@ let reducersInitialState = {
     ColorSelectorComponent,
     ListNotesComponent,
     FormNoteComponent,
+    LoginComponent,
+    ProtectedComponent,
   ],
   imports: [
     BrowserModule,
