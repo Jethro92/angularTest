@@ -1,21 +1,25 @@
 @import "../../../assets/scss/colors.scss";
 
-.btn-guardar{
-  background-color: rgb(38, 66, 119);
+.btn-save{
+  background-color: $primary;
   color: $light-backgrounds;
   margin-top: 1rem;
   border: none;
 }
 
-.btn-guardar:hover{
+.btn-save:hover{
   opacity:0.9
 }
 
 .input-available{
-  border-bottom: 0.2rem solid rgb(38, 66, 119);
+  border-bottom: 0.2rem solid $primary;
 }
 
 .required{
-  border-bottom: 0.2rem solid rgb(156, 41, 41);
+  border-bottom: 0.2rem solid $error;
+}
+
+.errorMessage{
+  color:$error;
 }
 

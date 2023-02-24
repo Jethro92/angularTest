@@ -2,10 +2,12 @@
   <div class="form-group">
     <label for="title">Title</label>
     <input type="text" class="form-control" id="title" formControlName="title" [class]="NotesForm.controls['title'].valid ?'input-available' :'required'" placeholder="Add a title" #title>
+    <p class="errorMessage" *ngIf="!NotesForm.controls['title'].valid">{{requiredMessage}}</p>
   </div>
   <div class="form-group">
     <label for="note">Note</label>
     <input type="note" class="form-control" id="content" formControlName="content" [class]="NotesForm.controls['content'].valid ?'input-available' :'required'" placeholder="Add a note" #content>
+    <p class="errorMessage" *ngIf="!NotesForm.controls['content'].valid">{{requiredMessage}}</p>
   </div>
 
 </form>

@@ -2,7 +2,6 @@ import { _ClassColors } from '../../models/class-color.model';
 import { Component, Output, EventEmitter } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Note } from '../../models/note.model';
-import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-form-note',
@@ -14,9 +13,11 @@ export class FormNoteComponent {
   @Output() onItemAdded = new EventEmitter<Note>;
   NotesForm!: FormGroup;
   isDisabled: boolean = true;
+  requiredMessage: string;
 
   constructor(private formBuilder:FormBuilder){
     this.onItemAdded = new EventEmitter();
+    this.requiredMessage = "Required";
   }
 
   ngOnInit() {
@@ -37,6 +38,7 @@ export class FormNoteComponent {
     let newNote:Note = new Note(title, content);
     newNote.setColor(_ClassColors.yellow);
     this.onItemAdded.emit(newNote);
+    this.NotesForm.setValue({title: '', content: ''});
     return false;
   }
 

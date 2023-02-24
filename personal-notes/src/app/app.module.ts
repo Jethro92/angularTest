@@ -1,6 +1,5 @@
 import { NotesService } from './services/notes.service';
 import { reducerNotes, initializeNoteState, NotesEffects } from './state-management/notes.reducer';
-import { NotesApiClient } from './models/notes-api-client.model';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
@@ -12,13 +11,15 @@ import { ColorSelectorComponent } from './components/color-selector/color-select
 import { ListNotesComponent } from './components/list-notes/list-notes.component';
 import { DetailNoteComponent } from './components/detail-note/detail-note.component';
 import { FormNoteComponent } from './components/form-note/form-note.component';
-import { StoreModule as NgRxStoreModule,ActionReducerMap, StoreRootModule} from '@ngrx/store';
+import { StoreModule as NgRxStoreModule,ActionReducerMap} from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { NotesState } from './state-management/entity';
 import { LoginComponent } from './components/login/login.component';
 import { ProtectedComponent } from './components/protected/protected.component';
+import { AuthService } from './services/auth.service';
+import { LoggedUserGuard } from './guards/logged-user/logged-user.guard';
 
 
 
@@ -58,7 +59,9 @@ let reducersInitialState = {
     StoreDevtoolsModule.instrument()
   ],
   providers: [
-    NotesService
+    NotesService,
+    AuthService,
+    LoggedUserGuard
   ],
   bootstrap: [AppComponent]
 })

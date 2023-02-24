@@ -1,0 +1,28 @@
+@import "../../../assets/scss/colors.scss";
+
+.btn-save{
+  background-color: $primary;
+  color: $light-backgrounds;
+  margin-top: 1rem;
+  border: none;
+}
+
+.btn-save:hover{
+  opacity:0.9
+}
+
+.input-available{
+  border-bottom: 0.2rem solid $primary;
+}
+
+.required{
+  border-bottom: 0.2rem solid $error;
+}
+
+.errorMessage{
+  color:$error;
+}
+
+.loginError{
+  font-size: 1.5em;
+}

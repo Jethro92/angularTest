@@ -1,3 +1,5 @@
+@import '../../../assets/scss/colors.scss';
+
 .clr-selector{
   width: 1.5rem;
   height: 1.5rem;
@@ -5,7 +7,7 @@
   border: none;
   margin: 0.5rem;
   //opacity: 0.9;
-  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+  box-shadow: 0 2px 5px 0 $black, 0 2px 10px 0 $black;
 }
 
 .clr-selector:hover{

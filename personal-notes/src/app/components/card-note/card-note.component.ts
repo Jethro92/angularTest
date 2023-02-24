@@ -22,14 +22,10 @@ export class CardNoteComponent {
   }
 
   ngOnInit(): void {
-
-
     this.classColor = this.note.color;
   }
 
   addColorToCard(color:string){
-
-    //this.note.setColor(color);
     this.notesApiClient.changeColor(this.note, color);
     this.classColor = this.note.color;
   }
