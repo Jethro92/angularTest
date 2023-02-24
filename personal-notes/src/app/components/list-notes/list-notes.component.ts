@@ -1,4 +1,4 @@
-import { NotesApiClient } from '../../models/notes-api-client.model';
+import { NotesApiClient } from '../../services/notes/notes-api-client.model';
 import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { Note } from '../../models/note.model';
 

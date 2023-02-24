@@ -27,4 +27,9 @@ export class ColorChangeAction implements Action{
   constructor(public note:Note, public color:string){}
 }
 
-export type NotesActions = NewNoteAction | SelectedImportantAction | VoteUpAction | VoteDownAction | ColorChangeAction;
+export class LoadNotesAction implements Action{
+  type = NotesActionTypes.LOAD_NOTES;
+  constructor(public notes:Note[]){}
+}
+
+export type NotesActions = NewNoteAction | SelectedImportantAction | VoteUpAction | VoteDownAction | ColorChangeAction | LoadNotesAction;

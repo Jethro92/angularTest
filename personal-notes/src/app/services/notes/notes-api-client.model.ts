@@ -1,10 +1,10 @@
-import { ColorChangeAction, NewNoteAction, SelectedImportantAction, VoteDownAction, VoteUpAction } from './../state-management/note.actions';
+import { ColorChangeAction, NewNoteAction, SelectedImportantAction, VoteDownAction, VoteUpAction } from '../../state-management/note.actions';
 import { Injectable } from '@angular/core';
-import {Note} from './note.model';
-import { NotesService } from './../services/notes.service';
+import {Note} from '../../models/note.model';
+import { NotesService } from './notes.service';
 import { Store } from '@ngrx/store';
-import { AppState } from '../app.module';
-import { NotesActions } from '../state-management/note.actions';
+import { AppState } from '../../state-management/notes.reducer';
+import { NotesActions } from '../../state-management/note.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -32,8 +32,6 @@ export class NotesApiClient {
  getAll():Note[]{
     //this.service.findAll().subscribe((res:Note[]) => this.notes = res);
 
-
-
     // console.log(this.notes);
     // return this.notes;
     return this.all;
@@ -60,10 +58,16 @@ export class NotesApiClient {
     note.setSelected(true);
     let id:number = 0;
     this.store.select(state => state.notes.id).subscribe(x => id = x);
-    console.log(id);
+    // console.log(id);
     note.setId(id);
+    // this.service.addNote(note)
 
-    this.store.dispatch(new NewNoteAction(note));
+    if(this.service.addNote(note)){
+      this.store.dispatch(new NewNoteAction(note));
+    }
+
+
+
     //return this.service.addNote(note);
   }
 

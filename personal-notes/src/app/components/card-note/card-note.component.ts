@@ -1,4 +1,4 @@
-import { NotesApiClient } from '../../models/notes-api-client.model';
+import { NotesApiClient } from '../../services/notes/notes-api-client.model';
 import { Component, HostBinding, Input, EventEmitter, Output } from '@angular/core';
 import { Note } from '../../models/note.model';
 import { _ClassColors } from '../../models/class-color.model';

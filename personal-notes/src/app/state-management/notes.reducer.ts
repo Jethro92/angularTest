@@ -1,6 +1,6 @@
-import { ColorChangeAction } from './note.actions';
+import { ColorChangeAction, LoadNotesAction } from './note.actions';
 import { Injectable } from "@angular/core";
-import { Action } from "@ngrx/store";
+import { Action, ActionReducerMap } from "@ngrx/store";
 import { Actions, ofType, createEffect } from '@ngrx/effects';
 import {map} from 'rxjs/operators';
 import { Note } from "../models/note.model";
@@ -17,6 +17,22 @@ export const initializeNoteState = function(){
     id:0
   };
 }
+
+
+//redux init
+export interface AppState{
+  notes: NotesState;
+}
+
+export const reducers: ActionReducerMap<AppState> = {
+  notes: reducerNotes
+};
+
+export const reducersInitialState = {
+  notes: initializeNoteState()
+};
+//redux end init
+
 
 
 /*Reducers*/
@@ -85,6 +101,15 @@ export function reducerNotes(
         return { ...state,
           items: state.items.map((note) => note.id === updatedNote.id ? newUpdatedNote:note)
         };
+      }
+      case NotesActionTypes.LOAD_NOTES:{
+        let notes: Note[] = (action as LoadNotesAction).notes;
+        let currentImportant: Note = notes.filter((note) => (note.selected))[0];
+        return {
+          ...state,
+          items: notes,
+          important: currentImportant
+        }
       }
 
     }
