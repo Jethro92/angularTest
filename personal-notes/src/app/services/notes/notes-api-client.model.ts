@@ -5,6 +5,7 @@ import { NotesService } from './notes.service';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../state-management/notes.reducer';
 import { NotesActions } from '../../state-management/note.actions';
+import { db } from 'src/app/app.module';
 
 @Injectable({
   providedIn: 'root'
@@ -64,6 +65,10 @@ export class NotesApiClient {
 
     if(this.service.addNote(note)){
       this.store.dispatch(new NewNoteAction(note));
+      const myDb = db;
+      myDb.notes.add(note);
+      console.log('All notes from db');
+      myDb.notes.toArray().then(n => console.log(n));
     }
 
 

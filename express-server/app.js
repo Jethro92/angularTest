@@ -18,3 +18,7 @@ app.post("/my", (req,res,next) => {
 
     res.status(200).send(req.body);
 });
+
+app.get("/api/translation", (req, res, next) => res.json([
+    {lang: req.query.lang, key: 'HOLA', vlaue: 'HOLA' + req.query.lang}
+]));

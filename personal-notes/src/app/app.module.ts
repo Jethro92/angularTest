@@ -1,3 +1,4 @@
+import { TranslateLoader, TranslateModule, TranslateService, TranslateStore } from '@ngx-translate/core';
 import { NotesService } from './services/notes/notes.service';
 import { reducers, reducersInitialState, NotesEffects } from './state-management/notes.reducer';
 import { APP_INITIALIZER, InjectionToken, NgModule } from '@angular/core';
@@ -22,15 +23,14 @@ import { AuthService } from './services/auth/auth.service';
 import { LoggedUserGuard } from './guards/logged-user/logged-user.guard';
 import { AppConfig, APP_CONFIG_VALUE } from './../assets/urls/urls';
 import { AppInitService } from './services/app-init/app-init.service';
-
+import { BrowserStorageService } from './services/browser-storage/browser-storage.service';//for local browser complex storage
 
 
 export function init_app(appInitService:AppInitService): () => Promise<any>{
   return () => appInitService.initializeNotesState();
-
 }
-
 export const APP_CONFIG = new InjectionToken<AppConfig>('app.config');
+export const db = new BrowserStorageService();
 
 
 @NgModule({
@@ -51,7 +51,8 @@ export const APP_CONFIG = new InjectionToken<AppConfig>('app.config');
     HttpClientModule,
     NgRxStoreModule.forRoot(reducers, { initialState: reducersInitialState}),
     EffectsModule.forRoot([NotesEffects]),
-    StoreDevtoolsModule.instrument()
+    StoreDevtoolsModule.instrument(),
+    TranslateModule.forRoot()
   ],
   providers: [
     NotesService,
@@ -59,7 +60,10 @@ export const APP_CONFIG = new InjectionToken<AppConfig>('app.config');
     LoggedUserGuard,
     { provide: APP_CONFIG, useValue: APP_CONFIG_VALUE},
     AppInitService,
-    { provide: APP_INITIALIZER, useFactory: init_app, deps: [AppInitService], multi:true}
+    { provide: APP_INITIALIZER, useFactory: init_app, deps: [AppInitService], multi:true},
+    BrowserStorageService,
+    TranslateService,
+    TranslateStore,
   ],
   bootstrap: [AppComponent]
 })
